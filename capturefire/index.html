@@ -1,0 +1,492 @@
+<!DOCTYPE html><html><head><title>Capture-Fire</title><meta http-equiv="content-type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui=1"><meta charset="UTF-8"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="description" content=""><link rel="manifest" href="manifest.json"><link rel="icon" type="image/png" href="icon64.png"><link rel="apple-touch-icon" sizes="180x180" href="icon180.png"><link rel="icon" type="image/png" sizes="32x32" href="icon32.png"><link rel="icon" type="image/png" sizes="16x16" href="icon16.png"><style>html,body {
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  overflow:hidden;
+  font-family: Verdana;
+}
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+#canvaswrapper {
+  text-align: center ;
+}
+</style><style>@font-face { font-family: "BitCell" ; src: url("fonts/BitCell.ttf") format("truetype"); }</style><script>window.fonts = ["BitCell"]</script></head><body class="noselect custom-cursor" oncontextmenu="return false;"><div id="canvaswrapper"></div><script type="text/javascript">var resources = {"images":[{"file":"bgnebula.png","version":28,"size":199,"properties":{"frames":2,"fps":5}},{"file":"bgstar.png","version":1,"size":545,"properties":{"frames":8,"fps":5}},{"file":"ebomb.png","version":1,"size":131,"properties":{"frames":4,"fps":12}},{"file":"ebomber.png","version":1,"size":183,"properties":{"frames":1,"fps":5}},{"file":"eexplode.png","version":2,"size":279,"properties":{"frames":4,"fps":5}},{"file":"enemy1.png","version":9,"size":397,"properties":{"frames":2,"fps":5}},{"file":"espinner.png","version":1,"size":116,"properties":{"frames":2,"fps":10}},{"file":"icon.png","version":0,"size":0,"properties":{}},{"file":"pammo.png","version":5,"size":99,"properties":{"frames":1,"fps":5}},{"file":"pbar.png","version":1,"size":128,"properties":{"frames":1,"fps":5}},{"file":"pbomb.png","version":1,"size":266,"properties":{"frames":4,"fps":6}},{"file":"pbullet.png","version":3,"size":150,"properties":{"frames":2,"fps":5}},{"file":"pexplode.png","version":3,"size":746,"properties":{"frames":3,"fps":8}},{"file":"player.png","version":1,"size":490,"properties":{"frames":4,"fps":14}},{"file":"playerdmg.png","version":1,"size":393,"properties":{"frames":2,"fps":5}},{"file":"procket.png","version":1,"size":219,"properties":{"frames":1,"fps":5}},{"file":"psel.png","version":1,"size":143,"properties":{"frames":1,"fps":5}},{"file":"pspinner.png","version":1,"size":210,"properties":{"frames":2,"fps":22}},{"file":"pwave.png","version":18,"size":477,"properties":{"frames":2,"fps":8}},{"file":"sprite3.png","version":109,"size":200,"properties":{"frames":1,"fps":9}}],"assets":[],"maps":{},"sounds":[],"music":[]};
+var graphics = "M1";
+
+</script><script type="text/javascript">var orientation = 'portrait' ;
+var aspect = '2x1' ;
+var ms_libs = [] ;
+window.skip_service_worker = true;
+window.exported_project = true;
+</script><script src="runner.js"></script><script src="microengine.js"></script></body><script id="code" type="text/x-microscript">
+
+var hpos, pwep, pamm, psel, isL, isR, isU, isD, ens, pbullet, ebullet, efts;
+var isB1, isB2, btime, spos, svar, bgpos, dmgs, pnxt, isM, isSW, score, state;
+var timer, rate;
+var dbg1, dbcd;
+const HWID = screen.width / 2;
+const HHEI = screen.height / 2;
+
+function Vector(x, y) {
+  this.x = x;
+  this.y = y;
+};
+
+copy = function(v) {
+  return new Vector(v.x, v.y);
+};
+
+set = function(v, x, y) {
+  v.x = x;
+  v.y = y;
+}
+
+dist = function(v, nv) {
+  return Math.hypot(v.x - nv.x, v.y - nv.y);
+}
+
+function Enemy(t, p) {
+  this.pos = copy(p);
+  this.type = t;
+  switch(t) {
+    case 0:
+      this.health = 5;
+      this.img = "enemy1";
+      this.off = new Vector(0, 0);
+      this.size = new Vector(16, 16);
+      this.r = 8;
+      this.val = 0;
+      this.time = 10;
+      this.worth = 1;
+  }
+};
+
+function Bullet(t, p) {
+  this.pos = copy(p);
+  this.type = t;
+  this.val = 0;
+  switch(t) {
+    case 0:
+      this.size = new Vector(8, 8);
+      this.img = "pbullet";
+      this.pwr = 1;
+      this.r = 4;
+      this.reload = 10;
+      break;
+    case 1:
+      this.size = new Vector(4, 4);
+      this.img = "espinner";
+      this.r = 2;
+      break;
+    case 2:
+      this.size = new Vector(8, 8);
+      this.img = "pspinner";
+      this.pwr = 3;
+      this.r = 4;
+      this.reload = 20;
+      break;
+  }
+};
+
+function Effect(t, p) {
+  this.pos = copy(p);
+  this.type = t;
+  switch(t) {
+    case 0:
+      this.life = 4;
+      this.len = 4;
+      this.img = "eexplode";
+      this.size = new Vector(16, 16);
+      break;
+    case 1:
+      this.life = 3;
+      this.len = 3;
+      this.img = "pexplode";
+      this.size = new Vector(32, 32);
+  }
+}
+
+clamp = function(v) {
+  if(v.x < -screen.width + 32) {
+    v.x = -screen.width + 32;
+  } else if(v.x > screen.width - 32) {
+    v.x = screen.width - 32;
+  }
+  if(v.y < -screen.height + 32) {
+    v.y = -screen.height + 32;
+  } else if(v.y > screen.height - 32) {
+    v.y = screen.height - 32;
+  }
+}
+
+clamph = function(v) {
+  if(v.x < -screen.width + 32) {
+    v.x = -screen.width + 32;
+  } else if(v.x > screen.width - 32) {
+    v.x = screen.width - 32;
+  }
+}
+
+reset = function() {
+  hpos = new Vector(0, -HHEI / 2);
+  pwep = [-1, -1];
+  pamm = [-1, -1];
+  psel = -1;
+  pnxt = 0;
+  ens = [];
+  pbullet = [];
+  ebullet = [];
+  efts = [];
+  btime = 0;
+  svar = 0;
+  spos = new Vector(0, 0);
+  bgpos = 0;
+  dmgs = 0;
+  isM = false;
+  isSW = 0;
+  score = 0;
+  state = 0;
+  timer = 100;
+  rate = 0.995;
+  
+  dbcd = 0;
+}
+
+init = function() {
+  reset();
+}
+
+update = function() {
+  
+  switch(state) {
+    case 0:
+      timer--;
+      if(timer <= 0) {
+        state = 1;
+      }
+      break;
+    case 1:
+      // Player code
+      if(isM) {
+        doMouse();
+      } else {
+        doKBD();
+      }
+      if(isU) hpos.y += 2;
+      if(isD) hpos.y -= 2;
+      if(isL) hpos.x -= 2;
+      if(isR) hpos.x += 2;
+      clamp(hpos);
+      btime--;
+      if(isB1 && btime < 0) {
+        pb = 0;
+        if(psel == -1) {
+          pb = new Bullet(0, new Vector(hpos.x, hpos.y + 16));
+        } else {
+          pb = new Bullet(pwep[psel], new Vector(hpos.x, hpos.y + 16));
+          pamm[psel]--;
+          if(pamm[psel] <= 0) {
+            pwep[psel] = -1;
+            psel = -1;
+          }
+        }
+        btime = pb.reload;
+        pbullet.push(pb);
+      }
+      dmgs--;
+      if(Math.random() > rate) ens.push(new Enemy(0, new Vector(0, HHEI + 24)));
+      break;
+    case 2:
+      timer--;
+      if(timer <= 0) {
+        reset();
+      }
+      break;
+  }
+  
+  // Enemies loop
+  for(i = 0; i < ens.length; i++) {
+    en = ens[i];
+    if(en.y < -screen.height * 0.6) {
+      ens.splice(i, 1);
+      i--;
+      continue;
+    }
+    if(dist(en.pos, hpos) < en.r + 6) {
+      if(dmgs > 0) {
+        doDead();
+      } else {
+        dmgs = 30;
+      }
+    }
+    switch(en.type) {
+      case 0:
+        if(Math.random() > 0.9) {
+          if(Math.random() > 0.667) {
+            en.val = -2;
+          } else if(Math.random() > 0.5) {
+            en.val = 2;
+          } else en.val = 0;
+        }
+        en.pos.y -= 0.5;
+        en.pos.x += en.val;
+        if(en.time < 0) {
+          if(Math.random() > 0.99) {
+            ebullet.push(new Bullet(1, en.pos));
+          }
+        } else {
+          en.time--;
+        }
+    }
+    clamph(en.pos);
+  }
+  
+  // Player bullets loop
+  for(i = 0; i < pbullet.length; i++) {
+    pb = pbullet[i];
+    switch(pb.type) {
+      case 0:
+        pb.pos.y += 3;
+        break;
+      case 2:
+        pb.pos.y += 2;
+    }
+    if(pb.y > screen.height * 0.6) {
+      pbullet.splice(i, 1);
+      i--;
+    }
+  }
+  
+  // Enemy bullets loop
+  for(i = 0; i < ebullet.length; i++) {
+    eb = ebullet[i];
+    switch(eb.type) {
+      case 1:
+        eb.pos.y -= 2;
+    }
+    if(dist(eb.pos, hpos) < eb.r + 8) {
+      if(dmgs > 0) {
+        doDead();
+      } else {
+        dmgs = 30;
+      }
+      ebullet.splice(i, 1);
+      i--;
+      continue;
+    }
+    if(eb.y < -screen.height * 0.6) {
+      ebullet.splice(i, 1);
+      i--;
+    }
+  }
+  
+  // Debug stuff
+  dbcd--;
+  if(dbg1 && dbcd < 0) {
+    dbcd = 100;
+    ens.push(new Enemy(0, new Vector(0, 0)));
+  }
+  
+  // Wave code
+  svar--;
+  if(svar < -20 && isB2) {
+    svar = 20;
+  }
+  if(svar > 0) {
+    set(spos, hpos.x, hpos.y + 32);
+    for(i = 0; i < ebullet.length; i++) {
+      eb = ebullet[i];
+      if(Math.abs(spos.x - eb.pos.x) + Math.abs(spos.y - eb.pos.y) < 32) {
+        if(pwep[0] == eb.type + 1) {
+          pamm[0] = 16;
+        } else if(pwep[1] == eb.type + 1) {
+          pamm[1] = 16;
+        } else if(psel > -1) {
+          pwep[psel] = eb.type + 1;
+          pamm[psel] = 16;
+          pnxt = (psel + 1) % 2;
+        } else {
+          pwep[pnxt] = eb.type + 1;
+          pamm[pnxt] = 16;
+          pnxt = (pnxt + 1) % 2;
+        }
+        ebullet.splice(i, 1);
+        i--;
+        
+      }
+    }
+  }
+  
+  if(isSW == 1) {
+    isSW++;
+    do {
+      psel++;
+      if(psel > 1) psel = -1;
+      if(psel > -1 && pwep[psel] != -1) break;
+    } while(psel != -1);
+  }
+  
+  // Enemies-bullets loop
+  enl: for(i = 0; i < ens.length; i++) {
+    en = ens[i];
+    if(en.dmg > 0) en.dmg--;
+    for(j = 0; j < pbullet.length; j++) {
+      pb = pbullet[j];
+      if(dist(en.pos, pb.pos) < en.r + pb.r) {
+        en.dmg = 5;
+        en.health -= pb.pwr;
+        pbullet.splice(j, 1);
+        j--;
+        if(en.health < 1) {
+          ens.splice(i, 1);
+          i--;
+          rate -= 0.001;
+          score += en.worth;
+          efts.push(new Effect(0, en.pos));
+          continue enl;
+        }
+      }
+    }
+  }
+  
+  // Effects loop
+  for(i = 0; i < efts.length; i++) {
+    eft = efts[i];
+    eft.life--;
+    if(eft.life < 1) {
+      efts.splice(i, 1);
+      i--;
+    }
+  }
+  
+  bgpos++;
+  if(bgpos >= 128) bgpos -= 128;
+}
+
+doKBD = function() {
+  if(keyboard.LEFT) {
+    isR = false;
+    if(!keyboard.RIGHT) isL = true;
+  } else if(keyboard.RIGHT) {
+    isR = true;
+    isL = false;
+  } else {
+    isL = false;
+    isR = false;
+  }
+  if(keyboard.UP) {
+    isD = false;
+    if(!keyboard.DOWN) isU = true;
+  } else if(keyboard.DOWN) {
+    isU = false;
+    isD = true;
+  } else {
+    isU = false;
+    isD = false;
+  }
+  isB1 = keyboard.SPACE;
+  isB2 = keyboard.X;
+  dbg1 = keyboard.V;
+  if(keyboard.Z) {
+    if(isSW == 0) isSW = 1;
+  } else isSW = 0;
+  isM = mouse.left;
+}
+
+doMouse = function() {
+  if(mouse.x < hpos.x / 2) {
+    isL = true;
+    isR = false;
+  } else if(mouse.x > hpos.x / 2) {
+    isL = false;
+    isR = true;
+  } else {
+    isL = false;
+    isR = false;
+  }
+  if(mouse.y < hpos.y / 2) {
+    isD = true;
+    isU = false;
+  } else if(mouse.y > hpos.y / 2) {
+    isD = false;
+    isU = true;
+  } else {
+    isD = false;
+    isU = false;
+  }
+  isB1 = mouse.left;
+  isB2 = mouse.right;
+  if(mouse.middle) {
+    if(isSW == 0) isSW = 1;
+  } else isSW = 0;
+  isM = !keyboard.SPACE;
+}
+
+doDead = function() {
+  efts.push(new Effect(1, hpos));
+  state = 2;
+  timer = 100;
+}
+
+draw = function() {
+  screen.clear();
+  screen.setTranslation(-hpos.x / 4, -hpos.y / 4);
+  for(i = -10; i <= 14; i++) {
+    for(j = -8; j <= 4; j++) {
+      screen.drawSprite("bgnebula." + (i + j + 18) % 2, bgpos + j * 32, Math.sin(bgpos * Math.PI / 64) * 32 - bgpos + i * 32, 32, 32);
+    }
+  }
+  screen.setTranslation(-hpos.x / 2, -hpos.y / 2);
+  for(i = 0; i < efts.length; i++) {
+    eft = efts[i];
+    screen.drawSprite(eft.img + "." + (eft.len - eft.life), eft.pos.x, eft.pos.y, eft.size.x, eft.size.y);
+  }
+  if(svar > 0) screen.drawSprite("pwave", spos.x, spos.y, 32, 32);
+  for(i = 0; i < pbullet.length; i++) {
+    pb = pbullet[i];
+    screen.drawSprite(pb.img + "." + Math.abs(pb.pos.y % 2), pb.pos.x, pb.pos.y, pb.size.x, pb.size.y);
+  }
+  for(i = 0; i < ebullet.length; i++) {
+    eb = ebullet[i];
+    screen.drawSprite(eb.img + "." + Math.abs(eb.pos.y % 2), eb.pos.x, eb.pos.y, eb.size.x, eb.size.y);
+  }
+  for(i = 0; i < ens.length; i++) {
+    en = ens[i];
+    screen.drawSprite(en.img + "." + Math.sign(en.dmg), en.pos.x + en.off.x, en.pos.y + en.off.y, en.size.x, en.size.y);
+  }
+  if(state == 1) {
+    if(dmgs > 0) {
+      screen.drawSprite("playerdmg", hpos.x, hpos.y, 32, 32);
+    } else {
+      screen.drawSprite("player", hpos.x, hpos.y, 32, 32);
+    }
+  }
+  
+  screen.setTranslation(0, 0);
+  if(state == 0) {
+    screen.drawText("Ready?", 0, 0, 40, 0);
+    screen.drawTextOutline("Ready?", 0, 0, 40, "#FFF");
+  } else if(state == 2) {
+    screen.drawText("You're dead", 0, 0, 40, 0);
+    screen.drawTextOutline("You're dead", 0, 0, 40, "#FFF");
+  }
+  screen.drawSprite("pbar", HWID - 8, 12 - HHEI, 8, 16);
+  screen.drawSprite("pbar", HWID - 24, 12 - HHEI, 8, 16);
+  for(i = 0; i < pamm[0]; i += 2) {
+    screen.drawSprite("pammo", HWID - 24, 5 - HHEI + i, 4, 2);
+  }
+  if(psel > -1) {
+    screen.drawSprite("psel", HWID - 8 - psel * 16, 26 - HHEI, 8, 8);
+  }
+  screen.drawText("Score: " + score, -HWID + 32, -HHEI + 12, 16, 0);
+  screen.drawTextOutline("Score: " + score, -HWID + 32, -HHEI + 12, 16, "#FFF");
+}
+
+
+</script></html>
