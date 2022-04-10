@@ -10,8 +10,8 @@
 * **Mandated Variety:** The game proper only uses one button: the spacebar. Players must time their swings to hit the ball as squarely as possible. The lower levels are not randomized at all, but the third level uses a variety of pitches to trick the player.
 * **Prototype Goal:** The game was meant to turn a mundane timing concept into something interesting.
 * **Player Experience Goals:** The physics are designed to feel dynamic, like the swings actually have force.
-* **Gameplay:** 
-* **Strategies:** 
-* **Story/Setting/Premise:** 
-* **Target Audience:** 
-* **Play Time:** 
+* **Gameplay:** Form the menu, the player can press the 1, 2, or 3 keys to start the game with the specified difficulty level. Once in the game, the player gets a stock of 10 baseballs. The game periodically fires them down the screen, and the player can press the spacebar to swing a mace. If the mace connects with a baseball, the baseball is launched, with the distance and direction depending on the accuracy of the swing. The player is then awarded with points based on the distance. Once the player's stock is depleted, the game ends. At the highest level, the speed of the baseballs is unpredictable, but the points are increased.
+* **Strategies:** The player should take note of where in the mace's swing launches the baseball the farthest.
+* **Story/Setting/Premise:** There is nothing in the way of story.
+* **Target Audience:** The game should appeal to fans of short, arcade-style games.
+* **Play Time:** A single game can take less than a minute. 
