@@ -249,8 +249,8 @@ draw = function() {
       if(typeof mapnam[i] === 'undefined') break;
       screen.drawText(mapnam[i], -80, 40 - i * 20, 30, 0);
       screen.drawText(mapscr[i], 80, 40 - i * 20, 30, 0);
-      screen.drawText(state == -1 ? "Press space to exit" : "High score! Enter your initials!", 0, -75, 16, 0);
     }
+    screen.drawText(state == -1 ? "Press space to exit" : "High score! Enter your initials!", 0, -75, 16, 0);
   } else if(state == 0) {
     screen.drawMap("entry", 0, 0, 256, 192);
     screen.drawText("Swing!", 0, 60, 50, 0);
