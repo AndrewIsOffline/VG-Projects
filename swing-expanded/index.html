@@ -1,0 +1,310 @@
+<!DOCTYPE html><html><head><title>Swing</title><meta http-equiv="content-type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui=1"><meta charset="UTF-8"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="description" content=""><link rel="manifest" href="manifest.json"><link rel="icon" type="image/png" href="icon64.png"><link rel="apple-touch-icon" sizes="180x180" href="icon180.png"><link rel="icon" type="image/png" sizes="32x32" href="icon32.png"><link rel="icon" type="image/png" sizes="16x16" href="icon16.png"><style>html,body {
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  overflow:hidden;
+  font-family: Verdana;
+}
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+#canvaswrapper {
+  text-align: center ;
+}
+</style><style>@font-face { font-family: "BitCell" ; src: url("fonts/BitCell.ttf") format("truetype"); }</style><script>window.fonts = ["BitCell"]</script></head><body class="noselect custom-cursor" oncontextmenu="return false;"><div id="canvaswrapper"></div><script type="text/javascript">var resources = {"images":[{"file":"ball.png","version":50,"size":546,"properties":{"frames":4,"fps":14}},{"file":"border.png","version":1,"size":89,"properties":{"frames":1,"fps":5}},{"file":"chain.png","version":1,"size":285,"properties":{"frames":1,"fps":5}},{"file":"crit.png","version":1,"size":378,"properties":{"frames":5,"fps":13}},{"file":"dust.png","version":1,"size":89,"properties":{"frames":1,"fps":5}},{"file":"grass.png","version":2,"size":89,"properties":{"frames":1,"fps":5}},{"file":"icon.png","version":45,"size":358,"properties":{"frames":1,"fps":5}},{"file":"launcher.png","version":1,"size":1664,"properties":{"frames":9,"fps":10}},{"file":"launcherold.png","version":1,"size":585,"properties":{"frames":1,"fps":5}},{"file":"marker.png","version":7,"size":149,"properties":{"frames":1,"fps":5}},{"file":"marker2.png","version":3,"size":150,"properties":{"frames":1,"fps":5}},{"file":"mdspike.png","version":1,"size":435,"properties":{"frames":1,"fps":5}},{"file":"shadow.png","version":1,"size":139,"properties":{"frames":1,"fps":5}},{"file":"shore.png","version":1,"size":139,"properties":{"frames":1,"fps":5}},{"file":"sink.png","version":9,"size":666,"properties":{"frames":5,"fps":1}},{"file":"smchain.png","version":1,"size":171,"properties":{"frames":1,"fps":5}},{"file":"smspike.png","version":4,"size":338,"properties":{"frames":1,"fps":5}},{"file":"spike.png","version":15,"size":627,"properties":{"frames":1,"fps":5}},{"file":"sprite.png","version":393,"size":609,"properties":{"frames":1,"fps":5}},{"file":"sprite2.png","version":3,"size":116,"properties":{"frames":1,"fps":5}},{"file":"stock.png","version":1,"size":168,"properties":{"frames":1,"fps":5}},{"file":"swing1.png","version":13,"size":211,"properties":{"frames":1,"fps":5}},{"file":"swing2.png","version":30,"size":350,"properties":{"frames":1,"fps":5}}],"assets":[],"maps":{"border":"{\"width\":36,\"height\":28,\"block_width\":8,\"block_height\":8,\"sprites\":[0,\"border\"],\"data\":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]}","entry":"{\"width\":32,\"height\":24,\"block_width\":8,\"block_height\":8,\"sprites\":[0,\"grass\"],\"data\":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]}","field":"{\"width\":32,\"height\":26,\"block_width\":8,\"block_height\":8,\"sprites\":[0,\"grass\",\"marker:0,1\",\"marker2:0,1\",\"marker:0,0\",\"marker2:0,0\",\"sprite2:0,1\",\"sprite2:1,1\",\"sprite2:0,0\",\"sprite2:1,0\",\"grass:0,0\",\"shore:0,1\",\"shore:0,0\"],\"data\":[1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,4,1,1,1,1,1,1,1,1,5,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,4,1,1,1,1,1,1,1,1,1,1,5,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,6,7,1,1,1,1,1,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,4,1,1,1,1,1,8,9,1,1,1,1,1,5,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,4,1,1,1,1,1,1,1,1,1,1,1,1,1,1,5,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,4,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,5,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,1,1,1,1,1,1,1,1,1,1,1,4,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,5,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,1,1,1,1,1,1,1,1,1,4,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,5,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,1,1,1,1,1,1,1,4,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,5,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,1,1,1,1,1,4,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,5,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,1,1,1,4,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,5,1,1,1,2,10,10,10,10,10,10,10,10,1,1,1,1,1,1,1,10,10,10,10,10,10,10,10,10,10,10,10,10,3,1,1,4,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,5,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,4,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,5,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12]}"},"sounds":[],"music":[]};
+var graphics = "M1";
+
+</script><script type="text/javascript">var orientation = 'any' ;
+var aspect = 'free' ;
+var ms_libs = [] ;
+window.skip_service_worker = true;
+window.exported_project = true;
+</script><script src="runner.js"></script><script src="microengine.js"></script></body><script id="code" type="text/x-microscript">
+
+var ball, spike, state, timer, stock, type, bvel, angle, score, swing, chain;
+var nscore, lvl, bstate, mapscr, mapnam, size, iscr, crpos;
+
+init = function() {
+  state = 0;
+  size = 0;
+  timer = 0;
+  mapscr = [storage.get("s1"), storage.get("s2"), storage.get("s3"), storage.get("s4"), storage.get("s5")];
+  mapnam = [storage.get("n1"), storage.get("n2"), storage.get("n3"), storage.get("n4"), storage.get("n5")];
+}
+
+// states:
+// -2 - enter name
+// -1 - high scores
+//  0 - menu
+//  1 - pause
+//  2 - pitch
+//  3 - crit
+//  4 - hit
+//  5 - reload + score
+//  6 - game over
+
+reset = function() {
+  state = 1;
+  timer = -72;
+  stock = 10;
+  angle = -3 * Math.PI / 4;
+  spike = [-28 + Math.cos(angle) * 32, -56 + Math.sin(angle) * 32];
+  chain = [-28 + Math.cos(angle) * 16, -56 + Math.sin(angle) * 16];
+  swing = 0;
+  score = 0;
+}
+
+update = function() {
+  if(state >= 1 && state != 3) {
+    if(swing == 0) {
+      if(keyboard.SPACE) {
+        swing = 1;
+      } else if(keyboard.press.S) {
+        size = (size == 0) ? 1 : 0;
+      }
+    } else {
+      angle += (size == 0 ? 1.2 : 0.8) * Math.PI / 16;
+      if(angle >= (5 * Math.PI / 4)) {
+        angle = -3 * Math.PI / 4;
+        swing = 0;
+      }
+      spike = [-28 + Math.cos(angle) * 32, -56 + Math.sin(angle) * 32];
+      chain = [-28 + Math.cos(angle) * 16, -56 + Math.sin(angle) * 16];
+      if(state == 2 && Math.hypot(spike[0] - ball[0], spike[1] - ball[1]) < (size == 0 ? 16 : 20)) {
+        state = 4;
+        hitang = Math.atan2(ball[1] - spike[1], ball[0] - spike[0]) * 1.5;
+        hitscl = (-Math.pow(hitang - Math.PI / 2, 2) + 2 * Math.PI) / 3;
+        bvel = [Math.cos(hitang) * hitscl, Math.sin(hitang) * hitscl, hitscl];
+        iscr = 0;
+        if(Math.abs(hitang - Math.PI / 2) < Math.PI / 24) {
+          iscr = 1;
+          hitang = Math.atan2(ball[1] - spike[1], ball[0] - spike[0]);
+          crpos = [ball[0] - Math.cos(hitang) * 8, ball[1] - Math.sin(hitang) * 8];
+          timer = 0;
+          state = 3;
+          bvel[1] *= 6;
+        }
+      }
+    }
+  }
+  switch(state) {
+    case -2:
+      if(type == 0) {
+        for(key in keyboard) {
+          if(keyboard[key] && key.length == 1) {
+            mapnam[stock] += key;
+            if(mapnam[stock].length >= 3) {
+              for(i = 0; i < 5; i++) {
+                storage.set("n" + (i + 1), mapnam[i]);
+                storage.set("s" + (i + 1), mapscr[i]);
+              }
+              state = -1;
+            }
+            type = 1;
+          }
+        }
+      } else {
+        type = 0;
+        for(key in keyboard) {
+          if(keyboard[key] && key.length == 1) {
+            type = 1;
+            break;
+          }
+        }
+      }
+      break;
+    case -1:
+      if(keyboard.press.SPACE) {
+        state = 0;
+      }
+      break;
+    case 0:
+      timer += 0.01;
+      if(timer >= 6.28) timer = 0;
+      if(keyboard["1"]) {
+        lvl = 1;
+        reset();
+      } else if(keyboard["2"]) {
+        lvl = 2;
+        reset();
+      } else if(keyboard["3"]) {
+        lvl = 3;
+        reset();
+      } else if(keyboard.H) {
+        state = -1;
+        return;
+      }
+      break;
+    case 1:
+      timer++;
+      if(timer >= 28) {
+        switch(lvl) {
+          case 1:
+            type = 1;
+            break
+          case 2:
+            type = 2;
+            break;
+          case 3:
+            type = Math.trunc(Math.random() * 4 + 1);
+            break;
+        }
+        ball = [0, 64, 0];
+        stock--;
+        state = 2;
+      }
+      break;
+    case 2:
+      switch(type) {
+        case 1:
+          ball[1] -= 2;
+          break;
+        case 2:
+          ball[1] -= 3;
+          break;
+        case 3:
+          ball[1] -= 3 / (1 + Math.exp((-ball[1] + 20) * 2)) + 1;
+          break;
+        case 4:
+          ball[1] -= 3.5;
+      }
+      
+      if(ball[1] <= -112) {
+        nscore = 0;
+        ball = [0, -56, 0];
+        timer = 0;
+        state = 5;
+      }
+      break;
+    case 3:
+      timer++;
+      if(timer >= 20) state = 4;
+      break;
+    case 4:
+      ball[0] += bvel[0];
+      ball[1] += bvel[1];
+      ball[2] += bvel[2];
+      bvel[2] -= 0.25;
+      if(ball[2] <= 0) {
+        ball[2] = 0;
+        bvel[2] *= -0.75;
+        if(Math.abs(bvel[0]) + Math.abs(bvel[1]) <= 0.5 || ball[1] > 112) {
+          nscore = Math.trunc(Math.pow(2, lvl - 1) * Math.pow(Math.hypot(ball[0], ball[1] + 56), 2) / 100);
+          score += nscore;
+          timer = 0;
+          state = 5;
+          iscr = (ball[1] > 112 ? 1 : 0);
+        } else {
+          bvel[0] *= 0.5;
+          bvel[1] *= 0.5;
+        }
+      }
+      break;
+    case 5:
+      timer++;
+      if(timer >= 50) {
+        if(stock == 0) {
+          timer = 300;
+          state = 6;
+        } else {
+          timer = 0;
+          state = 1;
+        }
+      }
+      break;
+    case 6:
+      timer--;
+      if(timer <= 0) {
+        for(i = 0; i < 5; i++) {
+          if(typeof mapnam[i] === 'undefined' || score > mapscr[i]) {
+            for(j = 4; j > i; j--) {
+              mapnam[j] = mapnam[j - 1];
+              mapscr[j] = mapscr[j - 1];
+            }
+            mapscr[i] = score;
+            mapnam[i] = "";
+            stock = i;
+            type = 0;
+            state = -2;
+            return;
+          }
+        }
+        state = -1;
+      }
+      break;
+  }
+}
+
+draw = function() {
+  screen.clear();
+  if(state <= -1) {
+    screen.drawMap("entry", 0, 0, 256, 192);
+    screen.drawText("High Scores", 0, 60, 30, 0);
+    for(i = 0; i < 5; i++) {
+      if(typeof mapnam[i] === 'undefined') break;
+      screen.drawText(mapnam[i], -80, 40 - i * 20, 30, 0);
+      screen.drawText(mapscr[i], 80, 40 - i * 20, 30, 0);
+      screen.drawText(state == -1 ? "Press space to exit" : "High score! Enter your initials!", 0, -75, 16, 0);
+    }
+  } else if(state == 0) {
+    screen.drawMap("entry", 0, 0, 256, 192);
+    screen.drawText("Swing!", 0, 60, 50, 0);
+    screen.drawTextOutline("Swing!", 0, 60, 50, "#FFF");
+    screen.drawText("Press space to swing!", 0, 30, 16, 0);
+    screen.drawText("Press S to switch spike!", 0, 15, 16, 0);
+    screen.drawText("Press 1, 2, or 3 to select a difficulty!", 0, -65, 16, 0);
+    screen.drawText("Press H to view the high scores!", 0, -80, 16, 0);
+    if(Math.abs(timer * 50 - 136) < 136) screen.drawSprite("ball", 50 * timer - 136,  20 * Math.abs(Math.sin(5 * timer)) - 40, 16, 16);
+  } else {
+    if((state == 4 && iscr == 1 && ball[1] + ball[2] > 0) || (state == 5 && iscr == 1)) {
+      screen.fillRect(0, 0, 256, 192, "#5555FF");
+      screen.setTranslation(0, -ball[1] - ball[2]);
+    }
+    screen.drawMap("field", 0, 8, 256, 208);
+    if(state == 2) {
+      screen.drawSprite("ball", ball[0], ball[1], 16, 16);
+    }
+    if(state == 4 && ball[2] > 0) {
+        screen.drawSprite("shadow", ball[0], ball[1] - 4, 16, 16);
+      }
+    if(size == 0) {
+      screen.drawSprite("smchain", chain[0], chain[1], 8, 8);
+      screen.drawSprite("smspike", spike[0], spike[1], 24, 24);
+    } else {
+      screen.drawSprite("chain", chain[0], chain[1], 16, 16);
+      screen.drawSprite("spike", spike[0], spike[1], 32, 32);
+    }
+    if(state == 1) {
+      screen.drawSprite("launcher." + Math.trunc(timer / 3), 0, 80, 32, 32);
+    } else {
+      screen.drawSprite("launcher.0", 0, 80, 32, 32);
+    }
+    if(state == 3 || state == 4) {
+      screen.drawSprite("ball", ball[0], ball[1] + ball[2], 16, 16);
+      if(state == 3 && timer < 20) screen.drawSprite("crit." + Math.trunc(timer / 4), crpos[0], crpos[1], 16, 16);
+    } else if(state == 5) {
+      if(iscr == 1) {
+        screen.drawSprite("sink." + Math.trunc(timer / 13), ball[0], ball[1], 16, 16);
+      }
+      screen.drawText("+" + nscore, ball[0], ball[1] + (50 + timer) / 5, 10, 0);
+    }
+    screen.setTranslation(0, 0);
+    if(state == 6) {
+      screen.drawText("Game Over", 0, 0, 40, 0);
+      screen.drawTextOutline("Game Over", 0, 0, 40, "#FFF");
+    }
+    for(i = 0; i < stock; i++) {
+      screen.drawSprite("stock", -120 + i * 10, 88, 8, 8);
+    }
+    screen.drawText("Score: " + score, 75, 88, 10, 0);
+  }
+  screen.drawMap("border", 0, 0, 288, 224);
+}
+
+
+</script></html>
