@@ -1,0 +1,608 @@
+<!DOCTYPE html><html><head><title>Human Experience</title><meta http-equiv="content-type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui=1"><meta charset="UTF-8"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="description" content=""><link rel="manifest" href="manifest.json"><link rel="icon" type="image/png" href="icon64.png"><link rel="apple-touch-icon" sizes="180x180" href="icon180.png"><link rel="icon" type="image/png" sizes="32x32" href="icon32.png"><link rel="icon" type="image/png" sizes="16x16" href="icon16.png"><style>html,body {
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  overflow:hidden;
+  font-family: Verdana;
+}
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+#canvaswrapper {
+  text-align: center ;
+}
+</style><style>@font-face { font-family: "BitCell" ; src: url("fonts/BitCell.ttf") format("truetype"); }</style><script>window.fonts = ["BitCell"]</script></head><body class="noselect custom-cursor" oncontextmenu="return false;"><div id="canvaswrapper"></div><script type="text/javascript">var resources = {"images":[{"file":"ball.png","version":1,"size":609,"properties":{"frames":1,"fps":5}},{"file":"bar.png","version":1,"size":172,"properties":{"frames":1,"fps":5}},{"file":"bat1.png","version":1,"size":211,"properties":{"frames":1,"fps":5}},{"file":"bat2.png","version":40,"size":197,"properties":{"frames":1,"fps":5}},{"file":"bg1.png","version":8,"size":102,"properties":{"frames":1,"fps":5}},{"file":"bg2.png","version":3,"size":102,"properties":{"frames":1,"fps":5}},{"file":"bg3.png","version":7,"size":102,"properties":{"frames":1,"fps":5}},{"file":"bg4.png","version":1,"size":102,"properties":{"frames":1,"fps":5}},{"file":"block.png","version":1,"size":194,"properties":{"frames":1,"fps":5}},{"file":"cheese.png","version":40,"size":314,"properties":{"frames":1,"fps":5}},{"file":"cup1.png","version":1,"size":206,"properties":{"frames":1,"fps":5}},{"file":"cup2.png","version":1,"size":214,"properties":{"frames":1,"fps":5}},{"file":"cup3.png","version":15,"size":220,"properties":{"frames":1,"fps":5}},{"file":"dot.png","version":5,"size":83,"properties":{"frames":1,"fps":5}},{"file":"face.png","version":1,"size":174,"properties":{"frames":1,"fps":5}},{"file":"icon.png","version":6,"size":373,"properties":{"frames":1,"fps":5}},{"file":"ketchup.png","version":54,"size":236,"properties":{"frames":1,"fps":5}},{"file":"milk.png","version":49,"size":242,"properties":{"frames":1,"fps":5}},{"file":"nose.png","version":4,"size":190,"properties":{"frames":1,"fps":5}},{"file":"pineapple.png","version":1,"size":246,"properties":{"frames":1,"fps":5}},{"file":"pizza1.png","version":1,"size":254,"properties":{"frames":1,"fps":5}},{"file":"pizza2.png","version":1,"size":255,"properties":{"frames":1,"fps":5}},{"file":"pizza3.png","version":1,"size":470,"properties":{"frames":1,"fps":5}},{"file":"smoothstatic.png","version":1,"size":5545,"properties":{"frames":3,"fps":5}},{"file":"spike.png","version":68,"size":328,"properties":{"frames":1,"fps":5}},{"file":"spikesm.png","version":1,"size":166,"properties":{"frames":1,"fps":5}},{"file":"static.png","version":103,"size":3040,"properties":{"frames":3,"fps":5}},{"file":"steak.png","version":10,"size":442,"properties":{"frames":1,"fps":5}},{"file":"stuff.png","version":1,"size":211,"properties":{"frames":1,"fps":5}},{"file":"table.png","version":1,"size":277,"properties":{"frames":1,"fps":5}},{"file":"tomato.png","version":64,"size":287,"properties":{"frames":1,"fps":5}}],"assets":[],"maps":{"bg1":"{\"width\":1,\"height\":12,\"block_width\":4,\"block_height\":4,\"sprites\":[0,\"bg1\"],\"data\":[1,1,1,1,1,1,1,1,1,1,1,1]}","bg2":"{\"width\":1,\"height\":12,\"block_width\":4,\"block_height\":4,\"sprites\":[0,\"bg2\"],\"data\":[1,1,1,1,1,1,1,1,1,1,1,1]}","bg3":"{\"width\":1,\"height\":12,\"block_width\":4,\"block_height\":4,\"sprites\":[0,\"bg3\"],\"data\":[1,1,1,1,1,1,1,1,1,1,1,1]}","bg4":"{\"width\":1,\"height\":12,\"block_width\":4,\"block_height\":4,\"sprites\":[0,\"bg4\"],\"data\":[1,1,1,1,1,1,1,1,1,1,1,1]}","bg5":"{\"width\":1,\"height\":12,\"block_width\":4,\"block_height\":4,\"sprites\":[0,\"bg4\",\"bg3\",\"bg2\",\"bg1\"],\"data\":[1,2,3,4,1,2,3,4,1,2,3,4]}","yourface":"{\"width\":16,\"height\":16,\"block_width\":1,\"block_height\":1,\"sprites\":[0],\"data\":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}"},"sounds":[],"music":[]};
+var graphics = "M1";
+
+</script><script type="text/javascript">var orientation = 'any' ;
+var aspect = 'free' ;
+var ms_libs = [] ;
+window.skip_service_worker = true;
+window.exported_project = true;
+</script><script src="runner.js"></script><script src="microengine.js"></script></body><script id="code" type="text/x-microscript">
+
+var state, facemap, name, type, timer, score, pos, oxpos, oypos, pvel, oxvel;
+var oyvel, jmp, spc, swing, angle;
+
+const names = [
+  "Eggs Benedict",
+  "Maximum Clown",
+  "CatsTheMovie",
+  "DanielTheHedgehog",
+  "Robert-chan",
+  "ToesASMR",
+  "DrinkSaliva",
+  "Cringe",
+  "A joke",
+  "AngyBoi"
+];
+
+function scramble(len) {
+  chars = "";
+  charlist = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  for(i = 0; i < len; i++) {
+    chars += charlist.charAt(Math.floor(Math.random() * 26));
+  }
+  return chars;
+}
+
+init = function() {
+  reset();
+}
+
+function reset() {
+  state = 0;
+  score = 0;
+}
+
+update = function() {
+  switch(state) {
+    case 0:
+      if(keyboard.press.SPACE) {
+        facemap = maps["yourface"];
+        maps["facemap"] = facemap;
+        facemap.name = "facemap";
+        state = 1;
+      }
+      break;
+    case 1:
+      if(mouse.press) {
+        state = 2;
+      }
+      break;
+    case 2:
+      if(mouse.press) {
+        xpos = Math.trunc(mouse.x / 8) + 8;
+        ypos = Math.trunc(mouse.y / 8) + 8;
+        if(mouse.x < 0) xpos--;
+        if(mouse.y < 0) ypos--;
+        if(facemap.get(xpos, ypos) != 0) {
+          facemap.set(xpos, ypos, 0);
+        } else facemap.set(xpos, ypos, "dot");
+      }
+      if(keyboard.press.SPACE) {
+        state = 3;
+      }
+      break;
+    case 3:
+      if(keyboard.press.SPACE) {
+        name = "";
+        state = 4;
+      }
+      break;
+    case 4:
+      if(type == 0) {
+        for(key in keyboard) {
+          if(keyboard[key] && key.length == 1) {
+            name += key;
+            type = 1;
+          } else if(keyboard.press.ENTER) {
+            name = Math.trunc(Math.random() * names.length);
+            state = 5;
+          }
+        }
+      }  else {
+        type = 0;
+        for(key in keyboard) {
+          if(keyboard[key] && key.length == 1) {
+            type = 1;
+            break;
+          }
+        }
+      }
+      break;
+    case 5:
+    case 6:
+    case 7:
+      if(keyboard.press.SPACE) {
+        state++;
+      }
+      break;
+    case 8:
+      if(score > 0) score--;
+      if(timer > 0) timer--;
+      if(keyboard.press.SPACE) {
+        score += 15;
+        timer = 3;
+      }
+      if(score >= 126) {
+        state = 9;
+        timer = 100;
+      }
+      break;
+    case 9:
+      timer--;
+      if(timer <= 0) {
+        state = 10;
+      }
+      break;
+    case 10:
+      if(keyboard.press.SPACE) {
+        score = 1;
+        pos = 0;
+        oxpos = 0;
+        oypos = -1500;
+        pvel = 0;
+        state++;
+      }
+      break;
+    case 11:
+      if(keyboard.LEFT) {
+        pvel -= 0.75;
+      }
+      if(keyboard.RIGHT) {
+        pvel += 0.75;
+      }
+      pos += pvel;
+      if(Math.abs(pos) > 64) {
+        pos = 64 * Math.sign(pos);
+        pvel = 0;
+      }
+      if(oypos < -1000) {
+        if(pos >= 48) {
+          oxpos = pos;
+          oypos = 32;
+        }
+      } else if(oypos == 32) {
+        oxpos = pos;
+        if(keyboard.press.SPACE) {
+          oxvel = pvel;
+          oypos = 33;
+        }
+      } else {
+        oxpos += oxvel;
+        oypos -= 3;
+        if(oypos <= -32) {
+          if(oxpos < 0 && oxpos > -64) {
+            if(score == 3) {
+              state++;
+            }
+            score++;
+          }
+          oypos = -1500;
+        }
+      }
+      break;
+    case 12:
+      if(keyboard.press.SPACE) {
+        pos = -32;
+        jmp = 0;
+        spc = 0;
+        swing = 0;
+        score = 0;
+        state++;
+      }
+      break;
+    case 13:
+      if(pos <= -32) {
+        pos = -32;
+        pvel = 0;
+        jmp = 1;
+      } else if(pos >= 32) {
+        pos = 32;
+        pvel *= -1;
+      }
+      if(keyboard.press.UP && jmp == 1) {
+        pvel = 3;
+        jmp = 0;
+        if(swing) angle = -0.1;
+      }
+      pos += pvel;
+      pvel -= 0.05;
+      if(((system.time() / 10 - 32) % 128) < 32) {
+        if(pos <= 0) {
+          if(spc == 1) {
+            score++;
+            spc = 0;
+            if(score >= 8 && swing == 0) {
+              angle = 0;
+              swing = 1;
+            }
+          }
+        } else score = 0;
+      } else if(((system.time() / 10 + 32) % 128) < 32) {
+        if(pos >= 0) {
+          if(spc == 1) {
+            score++;
+            spc = 0;
+          }
+        } else score = 0;
+      } else spc = 1;
+      if(angle < 0) {
+        angle -= 0.1;
+        if(Math.hypot(Math.cos(angle) * 120, 150 + Math.sin(angle) * 120 - pos) < 48) {
+          state = 14;
+        }
+      }
+      break;
+    case 14:
+      if(keyboard.press.SPACE) {
+        swing = 0;
+        oxpos = 0;
+        oypos = -1000;
+        score = 1;
+        angle = 0;
+        state++;
+      }
+      break;
+    case 15:
+      if(oypos > -1000) {
+        oxpos += oxvel;
+        oypos += oyvel;
+        oyvel -= 0.5;
+        if(Math.hypot(score * 35 - 35 + oxpos, oypos + 32) < 24) {
+          if(score == 3) state++;
+          oypos = -1000;
+          score++;
+        }
+        if(oypos <= -32) {
+          oypos = -1000;
+        }
+      } else {
+        if(keyboard.press.SPACE) {
+          swing = 1;
+          angle = 0;
+        }
+        if(swing == 1) {
+          angle += 0.2;
+          if(keyboard.release.SPACE || angle >= Math.PI / 2) {
+            if(angle > Math.PI / 2) angle = Math.PI / 2;
+            swing = 0;
+            oxvel = Math.cos(Math.PI - angle) * 10 * angle;
+            oyvel = Math.sin(Math.PI - angle) * 10 * angle;
+            oxpos = 50;
+            oypos = -32;
+          }
+        }
+      }
+      break;
+    case 16:
+      if(keyboard.press.SPACE) {
+        oxpos = 4;
+        oypos = 4;
+        oxvel = 0;
+        oyvel = 0;
+        state++;
+      }
+      break;
+    case 17:
+      if(keyboard.UP) {
+        oxvel -= 0.1;
+      }
+      if(keyboard.DOWN) {
+        oxvel += 0.1;
+      }
+      if(keyboard.LEFT) {
+        oyvel -= 0.1;
+      }
+      if(keyboard.RIGHT) {
+        oyvel += 0.1;
+      }
+      oxpos += oxvel;
+      oypos += oyvel;
+      if(oxpos < 1) {
+        oxpos = 1;
+        oxvel = 0;
+      }
+      if(oxpos > 256) {
+        oxpos = 256;
+        oxvel = 0;
+      }
+      if(oypos < 1) {
+        oypos = 1;
+        oyvel = 0;
+      }
+      if(oypos > 256) {
+        oypos = 256;
+        oyvel = 0;
+      }
+      if(Math.hypot(oxpos - 128, oypos - 128) < 8) {
+        timer = 0;
+        state++;
+      }
+      break;
+    case 18:
+      oxpos = (oxpos * 5 + 128) / 6;
+      oypos = (oypos * 5 + 128) / 6;
+      timer += 0.5;
+      if(timer >= 300) state++;
+      break;
+    case 19:
+      if(keyboard.press.SPACE) {
+        state++;
+      }
+      break;
+    case 20:
+      if(keyboard.press.SPACE) {
+        reset();
+      }
+      break;
+  }
+}
+
+draw = function() {
+  screen.clear();
+  switch(state) {
+    case 0:
+      for(i = 0; i < 25; i++) {
+        screen.drawSprite("smoothstatic", Math.trunc(i / 5) * 32 - 64, (i % 5) * 32 - 64, 32, 32);
+      }
+      screen.setLineWidth(0.2);
+      screen.drawText("The HUMAN Experience", 0, 40, 15, 0);
+      screen.drawTextOutline("The HUMAN Experience", 0, 40, 15, "#FFF");
+      scr1 = scramble(6);
+      screen.drawText("Use the arrow keys to ", -20, -50, 12, 0);
+      screen.drawTextOutline("Use the arrow keys to ", -20, -50, 12, "#FFF");
+      screen.drawText(scr1, 55, -50, 12, 0);
+      screen.drawTextOutline(scr1, 55, -50, 12, "#FFF");
+      scr1 = scramble(6);
+      screen.drawText("Use the space bar to ", -20, -65, 12, 0);
+      screen.drawTextOutline("Use the space bar to ", -20, -65, 12, "#FFF");
+      screen.drawText(scr1, 50, -65, 12, 0);
+      screen.drawTextOutline(scr1, 50, -65, 12, "#FFF");
+      break;
+    case 1:
+      for(i = 0; i < 25; i++) {
+        screen.drawSprite("smoothstatic", Math.trunc(i / 5) * 32 - 64, (i % 5) * 32 - 64, 32, 32);
+      }
+      screen.setLineWidth(0.2);
+      screen.drawText("Draw your FACE", 0, 15, 15, 0);
+      screen.drawTextOutline("Draw your FACE", 0, 15, 15, "#FFF");
+      screen.drawText("Use the mouse", 0, -15, 15, 0);
+      screen.drawTextOutline("Use the mouse", 0, -15, 15, "#FFF");
+      screen.drawSprite("face", 0, 0, 128, 128);
+      break;
+    case 2:
+      for(i = 0; i < 25; i++) {
+        screen.drawSprite("smoothstatic", Math.trunc(i / 5) * 32 - 64, (i % 5) * 32 - 64, 32, 32);
+      }
+      screen.setLineWidth(0.2);
+      screen.drawSprite("face", 0, 0, 128, 128);
+      screen.drawMap("facemap", 0, 0, 128, 128);
+      screen.drawText("Press space to finish", 0, -70, 15, 0);
+      screen.drawTextOutline("Press space to finish", 0, -70, 15, "#FFF");
+      break;
+    case 3:
+      for(i = 0; i < 25; i++) {
+        screen.drawSprite("smoothstatic", Math.trunc(i / 5) * 32 - 64, (i % 5) * 32 - 64, 32, 32);
+      }
+      screen.setLineWidth(0.2);
+      screen.drawMap("facemap", 0, 0, 128, 128);
+      screen.drawSprite("nose", 0, 0, 128, 128);
+      screen.drawText("You look beautiful!", 0, -70, 15, 0);
+      screen.drawTextOutline("You look beautiful!", 0, -70, 15, "#FFF");
+      break;
+    case 4:
+      for(i = 0; i < 25; i++) {
+        screen.drawSprite("smoothstatic", Math.trunc(i / 5) * 32 - 64, (i % 5) * 32 - 64, 32, 32);
+      }
+      screen.setLineWidth(0.2);
+      screen.drawText("ENTER your name", 0, 25, 15, 0);
+      screen.drawTextOutline("ENTER your name", 0, 25, 15, "#FFF");
+      screen.drawText(name, 0, 0, 15, 0);
+      screen.drawTextOutline(name, 0, 0, 15, "#FFF");
+      break;
+    case 5:
+      for(i = 0; i < 25; i++) {
+        screen.drawSprite("smoothstatic", Math.trunc(i / 5) * 32 - 64, (i % 5) * 32 - 64, 32, 32);
+      }
+      screen.setLineWidth(0.2);
+      screen.drawText("Your name is", 0, 25, 15, 0);
+      screen.drawTextOutline("Your name is", 0, 25, 15, "#FFF");
+      screen.drawText(names[name], 0, 0, 15, 0);
+      screen.drawTextOutline(names[name], 0, 0, 15, "#FFF");
+      screen.drawText("Great!", 0, -25, 15, 0);
+      screen.drawTextOutline("Great!", 0, -25, 15, "#FFF");
+      break;
+    case 6:
+      for(i = 0; i < 25; i++) {
+        screen.drawSprite("smoothstatic", Math.trunc(i / 5) * 32 - 64, (i % 5) * 32 - 64, 32, 32);
+      }
+      screen.setLineWidth(0.2);
+      screen.drawText("Welcome to the", 0, 55, 15, 0);
+      screen.drawTextOutline("Welcome to the", 0, 55, 15, "#FFF");
+      screen.drawText("HUMAN experience", 0, 45, 15, 0);
+      screen.drawTextOutline("HUMAN experience", 0, 45, 15, "#FFF");
+      screen.drawText("You must pass the", 0, 5, 15, 0);
+      screen.drawTextOutline("You must pass the", 0, 5, 15, "#FFF");
+      screen.drawText("trials of humanity", 0, -5, 15, 0);
+      screen.drawTextOutline("trials of humanity", 0, -5, 15, "#FFF");
+      screen.drawText("There are five in total", 0, -50, 15, 0);
+      screen.drawTextOutline("There are five in total", 0, -50, 15, "#FFF");
+      break;
+    case 7:
+      for(i = 0; i < 25; i++) {
+        screen.drawSprite("smoothstatic", Math.trunc(i / 5) * 32 - 64, (i % 5) * 32 - 64, 32, 32);
+      }
+      screen.setLineWidth(0.2);
+      screen.drawText("Get ready", 0, 0, 15, 0);
+      screen.drawTextOutline("Get ready", 0, 0, 15, "#FFF");
+      break;
+    case 8:
+      for(i = -6; i < 7; i++) {
+        screen.drawMap("bg1", i * 32, Math.sin(i / 3 + system.time() / 1000) * 16, 32, 384);
+      }
+      screen.drawMap("facemap", 0, 0, 32, 32);
+      screen.drawSprite("nose", 0, 0, 32, 32);
+      if(timer > 0) {
+        screen.drawSprite("bat1", 50, 0, 64, 32);
+      } else {
+        screen.drawSprite("bat2", 20, 32, 32, 64);
+      }
+      screen.fillRect(-80, score / 2 - 63, 6, score, "#F00");
+      screen.drawSprite("bar", -80, 0, 8, 128);
+      break;
+    case 9:
+      for(i = -6; i < 7; i++) {
+        screen.drawMap("bg1", i * 32, Math.sin(i / 3 + system.time() / 1000) * 16, 32, 384);
+      }
+      screen.setDrawScale(-1, 1);
+      screen.drawSprite("bat1", 55, 10, 512, 256);
+      screen.setDrawScale(1, 1);
+      break;
+    case 10:
+      for(i = 0; i < 25; i++) {
+        screen.drawSprite("smoothstatic", Math.trunc(i / 5) * 32 - 64, (i % 5) * 32 - 64, 32, 32);
+      }
+      screen.setLineWidth(0.2);
+      screen.drawText("Mistake", 0, 0, 15, 0);
+      screen.drawTextOutline("Mistake", 0, 0, 15, "#FFF");
+      break;
+    case 11:
+      for(i = -6; i < 7; i++) {
+        screen.drawMap("bg2", i * 32, Math.sin(i / 3 + system.time() / 1000) * 16 * ((i + 6) % 2 == 1 ? -1 : 1), 32, 384);
+      }
+      screen.drawMap("facemap", pos, 48, 32, 32);
+      screen.drawSprite("nose", pos, 48, 32, 32);
+      screen.drawSprite("stuff", 64, 16, 64, 32);
+      screen.drawSprite("table", 0, -48, 128, 32);
+      screen.drawSprite("pizza" + score, -32, -48, 64, 32);
+      if(oypos > -1000) {
+        if(score == 1) {
+          screen.drawSprite("tomato", oxpos, oypos, 32, 32);
+        } else if(score == 2) {
+          screen.drawSprite("cheese", oxpos, oypos, 32, 32);
+        } else if(score == 3) {
+          screen.drawSprite("pineapple", oxpos, oypos, 32, 32);
+        }
+      }
+      break;
+    case 12:
+      for(i = 0; i < 25; i++) {
+        screen.drawSprite("smoothstatic", Math.trunc(i / 5) * 32 - 64, (i % 5) * 32 - 64, 32, 32);
+      }
+      screen.setLineWidth(0.2);
+      screen.drawText("What have you done", 0, 0, 15, 0);
+      screen.drawTextOutline("What have you done", 0, 0, 15, "#FFF");
+      break;
+    case 13:
+      for(i = -6; i < 7; i++) {
+        screen.setDrawScale(1, 1 * ((i + 6) % 2 ? 1 : -1));
+        screen.drawMap("bg3", i * 32, Math.sin(i / 3 + system.time() / 1000) * 16, 32, 384);
+      }
+      screen.setDrawScale(1, 1);
+      for(i = -7; i < 8; i++) {
+        screen.drawSprite("block", i * 32 - (system.time() / 10) % 32, -64, 32, 32);
+        screen.drawSprite("block", i * 32 - (system.time() / 10) % 32, 64, 32, 32);
+      }
+      for(i = -3; i < 4; i++) {
+        screen.drawSprite("spike", (i + 0.5) * 128 - (system.time() / 10) % 128, -32, 32, 32);
+        screen.drawSprite("spike", i * 128 - (system.time() / 10) % 128, 32, 32, 32);
+      }
+      screen.drawMap("facemap", -50, pos, 32, 32);
+      screen.drawSprite("nose", -50, pos, 32, 32);
+      for(i = 0; i < score; i++) {
+        screen.drawSprite("spikesm", -120 + i * 20, 88, 16, 16);
+      }
+      if(swing == 1) {
+        screen.drawSprite("ball", Math.cos(angle) * 120 - 50, 150 + Math.sin(angle) * 120, 64, 64);
+      }
+      break;
+    case 14:
+      for(i = 0; i < 25; i++) {
+        screen.drawSprite("smoothstatic", Math.trunc(i / 5) * 32 - 64, (i % 5) * 32 - 64, 32, 32);
+      }
+      screen.setLineWidth(0.2);
+      screen.drawText("Oof", 0, 0, 15, 0);
+      screen.drawTextOutline("Oof", 0, 0, 15, "#FFF");
+      break;
+    case 15:
+      for(i = -6; i < 7; i++) {
+        screen.setDrawScale(1, 1 * ((i + 6) % 2 ? 1 : -1));
+        screen.drawMap("bg4", i * 32, Math.sin(i / 3 + system.time() / 1000) * 16 * ((i + 6) % 2 == 1 ? -1 : 1), 32, 384);
+      }
+      screen.setDrawScale(1, 1);
+      screen.drawMap("facemap", 50, -32, 32, 32);
+      screen.drawSprite("nose", 50, -32, 32, 32);
+      screen.fillRect(80, (angle * 252 / Math.PI) / 2 - 63, 6, (angle * 252 / Math.PI), "#F00");
+      screen.drawSprite("bar", 80, 0, 8, 128);
+      screen.drawSprite("cup" + score, -score * 35 + 35, -32, 32, 32);
+      if(oypos > -1000) {
+        if(score == 1) {
+          screen.drawSprite("milk", oxpos, oypos, 32, 32);
+        } else if(score == 2) {
+          screen.drawSprite("steak", oxpos, oypos, 32, 32);
+        } else if(score == 3) {
+          screen.drawSprite("ketchup", oxpos, oypos, 32, 32);
+        }
+      }
+      break;
+    case 16:
+      for(i = 0; i < 25; i++) {
+        screen.drawSprite("smoothstatic", Math.trunc(i / 5) * 32 - 64, (i % 5) * 32 - 64, 32, 32);
+      }
+      screen.setLineWidth(0.2);
+      scr1 = scramble(12);
+      screen.drawText(scr1, 0, 0, 15, 0);
+      screen.drawTextOutline(scr1, 0, 0, 15, "#FFF");
+      break;
+    case 17:
+      for(i = -6; i < 7; i++) {
+        screen.setDrawScale(1, 1 * ((i + 6) % 2 ? 1 : -1));
+        screen.drawMap("bg5", i * 32, Math.sin(i / 3 + system.time() / 1000) * 16 * ((i + 6) % 2 == 1 ? -1 : 1), 32, 384);
+      }
+      screen.setLineWidth(0.2);
+      screen.setDrawScale(1, 1);
+      screen.drawMap("facemap", 0, 0, oxpos, oypos);
+      screen.drawSprite("nose", 0, 0, 128, 128);
+      screen.drawText("Find YOURSELF", 0, -70, 15, 0);
+      screen.drawTextOutline("Find YOURSELF", 0, -70, 15, "#FFF");
+      break;
+    case 18:
+      for(i = -6; i < 7; i++) {
+        screen.setDrawScale(1, 1 * ((i + 6) % 2 ? 1 : -1));
+        screen.drawMap("bg5", i * 32, Math.sin(i / 3 + system.time() / 1000) * 16 * ((i + 6) % 2 == 1 ? -1 : 1), 32, 384);
+      }
+      screen.setDrawScale(1, 1);
+      screen.drawMap("facemap", 0, 0, oxpos + timer, oypos + timer);
+      screen.drawSprite("nose", 0, 0, 128 + timer, 128 + timer);
+      break;
+    case 19:
+      for(i = 0; i < 25; i++) {
+        screen.drawSprite("smoothstatic", Math.trunc(i / 5) * 32 - 64, (i % 5) * 32 - 64, 32, 32);
+      }
+      screen.setLineWidth(0.2);
+      screen.drawText("Congratulations", 0, 50, 15, 0);
+      screen.drawTextOutline("Congratulations", 0, 50, 15, "#FFF");
+      screen.drawText(names[name], 0, 0, 15, 0);
+      screen.drawTextOutline(names[name], 0, 0, 15, "#FFF");
+      screen.drawText("You have found", 0, -45, 15, 0);
+      screen.drawTextOutline("You have found", 0, -45, 15, "#FFF");
+      screen.drawText("your humanity", 0, -55, 15, 0);
+      screen.drawTextOutline("your humanity", 0, -55, 15, "#FFF");
+      break;
+    case 20:
+      screen.setLineWidth(0.2);
+      screen.drawTextOutline("It's terrible", 0, 25, 15, "#FFF");
+      screen.drawTextOutline("I'm sorry", 0, -25, 15, "#FFF");
+      break;
+  }
+}
+
+
+</script></html>
